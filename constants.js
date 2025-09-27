@@ -87,6 +87,8 @@ export const PROFESSIONAL_EXPERIENCE = [
 ]
 
 export const EXHIBITIONS_LIST = [
+    "Participación en el Evento Internacional de Pedagogía 2025.",
+    "Publicación en evento científico internacional (2025).",
     "Exposiciones individuales y colectivas de pintura en Cuba y proyectos en Guinea Ecuatorial.",
     "Producciones audiovisuales exhibidas en festivales y eventos culturales.",
     "Obras integradas en colecciones privadas.",

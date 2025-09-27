@@ -28,8 +28,8 @@
       :root {
         --font-sans: 'Inter', 'sans-serif';
         --font-serif: 'Playfair Display', 'serif';
-        --color-terracotta-500: #D05A43;
-        --color-terracotta-600: #B94A33;
+        --color-accent-gradient: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+        --color-accent-start: #833ab4;
         --color-slate-50: #f8fafc;
         --color-slate-100: #f1f5f9;
         --color-slate-200: #e2e8f0;
@@ -239,7 +239,7 @@
       .my-8 { margin-top: 2rem; margin-bottom: 2rem; }
       .mt-1 { margin-top: 0.25rem; } .mt-2 { margin-top: 0.5rem; }
       .mt-3 { margin-top: 0.75rem; } .mt-4 { margin-top: 1rem; }
-      .mb-1 { margin-bottom: 0.25rem; } .mb-2 { margin-bottom: 0.5rem; }
+      .mb-1 { margin-bottom: 0.25rem; } .mb-2 { margin-bottom: 0.25rem; }
       .mb-3 { margin-bottom: 0.75rem; } .mb-4 { margin-bottom: 1rem; }
       .mb-12 { margin-bottom: 3rem; } .mb-16 { margin-bottom: 4rem; }
       .ml-2 { margin-left: 0.5rem; } .mr-3 { margin-right: 0.75rem; }
@@ -276,8 +276,6 @@
       .bg-slate-200 { background-color: var(--color-slate-200); }
       .bg-slate-300 { background-color: var(--color-slate-300); }
       .bg-slate-800 { background-color: var(--color-slate-800); }
-      .bg-terracotta-500 { background-color: var(--color-terracotta-500); }
-      .bg-terracotta-600 { background-color: var(--color-terracotta-600); }
       .bg-transparent { background-color: transparent; }
       .bg-home-gradient {
         background: linear-gradient(135deg, #e0f2f1, #b2dfdb, #a7d8de, #c1e4e9);
@@ -301,30 +299,90 @@
       .text-slate-700 { color: var(--color-slate-700); }
       .text-slate-800 { color: var(--color-slate-800); }
       .text-slate-900 { color: var(--color-slate-900); }
-      .text-terracotta-500 { color: var(--color-terracotta-500); }
       .hover\:text-white:hover { color: var(--color-white); }
       .hover\:text-slate-900:hover { color: var(--color-slate-900); }
-      .hover\:text-terracotta-500:hover { color: var(--color-terracotta-500); }
-      .group:hover .group-hover\:text-terracotta-500 { color: var(--color-terracotta-500); }
       .border-red-500 { border-color: #ef4444; }
       .text-red-600 { color: #dc2626; }
       .bg-green-100 { background-color: #dcfce7; }
       .border-green-500 { border-color: #22c55e; }
       .text-green-700 { color: #15803d; }
-
+      
+      /* Accent Gradient Colors */
+      .bg-gradient-accent {
+        background-image: var(--color-accent-gradient);
+        background-size: 200% auto;
+      }
+      .text-gradient {
+        color: var(--color-accent-start); /* Fallback */
+        background-image: var(--color-accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+      .group:hover .group-hover\:text-gradient {
+        color: var(--color-accent-start);
+        background-image: var(--color-accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+      .hover\:text-gradient:hover {
+        color: var(--color-accent-start);
+        background-image: var(--color-accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+      }
+      .text-accent-start { color: var(--color-accent-start); }
+      .hover\:text-accent-start:hover { color: var(--color-accent-start); }
 
       /* Borders & Shadows */
-      .rounded-md { border-radius: 0.375rem; }
-      .rounded-lg { border-radius: 0.5rem; }
+      .rounded-md { border-radius: 0.5rem; }
+      .rounded-lg { border-radius: 0.75rem; }
       .rounded-full { border-radius: 9999px; }
       .border { border-width: 1px; } .border-t { border-top-width: 1px; }
-      .border-b-2 { border-bottom-width: 2px; } .border-l-2 { border-left-width: 2px; }
-      .border-l-4 { border-left-width: 4px; }
       .border-slate-200 { border-color: var(--color-slate-200); }
       .border-slate-300 { border-color: var(--color-slate-300); }
-      .border-slate-200\/50 { border-color: rgba(226, 232, 240, 0.5); }
-      .border-terracotta-500 { border-color: var(--color-terracotta-500); }
-      .border-terracotta-500\/20 { border-color: rgba(208, 90, 67, 0.2); }
+      .border-l-gradient {
+        border-left-width: 4px;
+        border-style: solid;
+        border-image-source: var(--color-accent-gradient);
+        border-image-slice: 1;
+      }
+      .border-b-gradient {
+        border-bottom-width: 2px;
+        border-style: solid;
+        border-image-source: var(--color-accent-gradient);
+        border-image-slice: 1;
+      }
+      .btn-gradient-outline {
+        border: 2px solid transparent;
+        background: linear-gradient(var(--color-slate-50), var(--color-slate-50)) padding-box, var(--color-accent-gradient) border-box;
+      }
+      .btn-gradient-outline > .btn-text {
+        background: var(--color-accent-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-fill-color: transparent;
+      }
+      .btn-gradient-outline:hover {
+        background-image: var(--color-accent-gradient);
+        background-size: 200% auto;
+        background-position: right center;
+      }
+      .btn-gradient-outline:hover > .btn-text {
+        background: none;
+        -webkit-background-clip: initial;
+        background-clip: initial;
+        -webkit-text-fill-color: var(--color-white);
+        text-fill-color: var(--color-white);
+        color: var(--color-white);
+      }
+
       .shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
       .shadow-md { box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); }
       .shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
@@ -335,6 +393,7 @@
       .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
       .transition-colors { transition-property: color, background-color, border-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
       .transition-transform { transition-property: transform; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
+      .transition-background { transition-property: background-position; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 400ms; }
       .duration-300 { transition-duration: 300ms; } .duration-500 { transition-duration: 500ms; } .duration-700 { transition-duration: 700ms; }
       .ease-out { transition-timing-function: cubic-bezier(0, 0, 0.2, 1); }
       .ease-in-out { transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
@@ -354,6 +413,7 @@
       .hover\:scale-110:hover { transform: scale(1.1); }
       .hover\:scale-125:hover { transform: scale(1.25); }
       .hover\:rotate-90:hover { transform: rotate(90deg); }
+      .hover\:bg-gradient-animate:hover { background-position: right center; }
 
       /* Interactivity */
       .cursor-pointer { cursor: pointer; }
@@ -363,8 +423,8 @@
       .focus\:ring-2:focus { --tw-ring-offset-shadow: 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color); --tw-ring-shadow: 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color); box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), 0 0 #0000; }
       .focus\:ring-offset-2:focus { --tw-ring-offset-width: 2px; }
       .focus\:ring-offset-slate-800:focus { --tw-ring-offset-color: #1e293b; }
-      .focus\:ring-terracotta-500:focus { --tw-ring-color: #D05A43; }
-      .focus\:border-terracotta-500:focus { border-color: #D05A43; }
+      .focus\:ring-accent-start:focus { --tw-ring-color: var(--color-accent-start); }
+      .focus\:border-accent-start:focus { border-color: var(--color-accent-start); }
       .focus\:ring-white:focus { --tw-ring-color: #fff; }
 
       /* Other */
@@ -378,8 +438,7 @@
       .opacity-100 { opacity: 1; }
       .hover\:bg-slate-200:hover { background-color: var(--color-slate-200); }
       .hover\:bg-slate-300:hover { background-color: var(--color-slate-300); }
-      .hover\:bg-terracotta-500:hover { background-color: var(--color-terracotta-500); }
-      .hover\:bg-terracotta-600:hover { background-color: var(--color-terracotta-600); }
+      .hover\:bg-accent-start:hover { background-color: var(--color-accent-start); }
       .group:hover .group-hover\:scale-105 { transform: scale(1.05); }
 
       /* Media Queries */
@@ -417,6 +476,11 @@
         from { clip-path: circle(0% at var(--x) var(--y)); }
         to { clip-path: circle(150% at var(--x) var(--y)); }
       }
+      
+      @keyframes reveal-out {
+        from { clip-path: circle(150% at var(--x) var(--y)); }
+        to { clip-path: circle(0% at var(--x) var(--y)); }
+      }
 
       ::view-transition-old(root),
       ::view-transition-new(root) {
@@ -437,8 +501,20 @@
         z-index: 1;
       }
 
-      html::view-transition-new(root) {
+      html:not(.dark)::view-transition-new(root) {
         animation: reveal-in 0.5s ease-in-out;
+      }
+
+      html.dark::view-transition-new(root) {
+        animation: reveal-in 0.5s ease-in-out;
+      }
+
+      html.dark::view-transition-old(root) {
+        animation: reveal-out 0.5s ease-in-out;
+      }
+
+      html:not(.dark)::view-transition-old(root) {
+        animation: reveal-out 0.5s ease-in-out;
       }
     </style>
 <script>
@@ -461,25 +537,24 @@
             <div class="flex items-center justify-between">
                 <a href="#inicio" id="logo-link" class="group transition-all duration-300 transform hover:scale-105 scale-100 nav-link" data-section="inicio">
                     <div class="flex items-center gap-3">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-slate-900 group-hover:text-terracotta-500 transition-colors duration-300">
-                            <path d="M6 18C9.46667 18 12.1333 16.5 14 13.5C15.8667 10.5 17.5333 9 19 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <path d="M4 4H12V12H4V4Z" fill="currentColor"></path>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="text-slate-900 group-hover:text-accent-start transition-colors duration-300">
+                           <path fill-rule="evenodd" clip-rule="evenodd" d="M3 3H21C21 12.9411 12.9411 21 3 21V3ZM5 5V19C11.835 19 17 13.835 17 7H5Z"/>
                         </svg>
-                        <span id="artist-name-logo" class="text-2xl font-serif font-bold tracking-tight text-slate-900 group-hover:text-terracotta-500 transition-colors duration-300"></span>
+                        <span id="artist-name-logo" class="text-2xl font-serif font-bold tracking-tight text-slate-900 group-hover:text-gradient transition-colors duration-300"></span>
                     </div>
                 </a>
                 
                 <div class="flex items-center gap-4">
                     <nav id="desktop-nav" class="hidden md:flex items-center space-x-8">
-                        <a href="#inicio" class="text-sm uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-px hover:text-terracotta-500 hover:scale-105 nav-link" data-section="inicio">Inicio</a>
-                        <a href="#portfolio" class="text-sm uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-px hover:text-terracotta-500 hover:scale-105 nav-link" data-section="portfolio">Portafolio</a>
-                        <a href="#docencia" class="text-sm uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-px hover:text-terracotta-500 hover:scale-105 nav-link" data-section="docencia">Docencia</a>
-                        <a href="#sobre-mi" class="text-sm uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-px hover:text-terracotta-500 hover:scale-105 nav-link" data-section="sobre-mi">Sobre Mí</a>
-                        <a href="#contacto" class="text-sm uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-px hover:text-terracotta-500 hover:scale-105 nav-link" data-section="contacto">Contacto</a>
+                        <a href="#inicio" class="text-sm uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-px hover:text-gradient hover:scale-105 nav-link" data-section="inicio">Inicio</a>
+                        <a href="#portfolio" class="text-sm uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-px hover:text-gradient hover:scale-105 nav-link" data-section="portfolio">Portafolio</a>
+                        <a href="#docencia" class="text-sm uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-px hover:text-gradient hover:scale-105 nav-link" data-section="docencia">Docencia</a>
+                        <a href="#sobre-mi" class="text-sm uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-px hover:text-gradient hover:scale-105 nav-link" data-section="sobre-mi">Sobre Mí</a>
+                        <a href="#contacto" class="text-sm uppercase tracking-widest transition-all duration-300 transform hover:-translate-y-px hover:text-gradient hover:scale-105 nav-link" data-section="contacto">Contacto</a>
                     </nav>
 
                     <div class="hidden md:block">
-                        <button id="theme-toggle" class="w-9 h-9 bg-slate-200 rounded-full flex items-center justify-center text-slate-600 hover:bg-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-terracotta-500" aria-label="Activar modo oscuro">
+                        <button id="theme-toggle" class="w-9 h-9 bg-slate-200 rounded-full flex items-center justify-center text-slate-600 hover:bg-slate-300 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-start" aria-label="Activar modo oscuro">
                             <div class="relative w-6 h-6 overflow-hidden">
                                 <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute inset-0 transition-all duration-500 ease-in-out">
                                     <circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
@@ -513,10 +588,10 @@
             <div class="relative z-10 p-6 flex flex-col items-center justify-center w-full max-w-4xl space-y-6">
                 <h1 id="artist-name-hero" class="font-serif text-6xl md:text-8xl lg:text-9xl font-bold text-slate-900 tracking-tight leading-none"></h1>
                 <p id="artist-title-hero" class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto"></p>
-                <div class="w-24 h-px bg-terracotta-500 my-4"></div>
+                <div class="w-24 h-px bg-gradient-accent my-4"></div>
                 <p id="teaching-quote-hero" class="font-serif text-xl md:text-2xl text-slate-700 italic max-w-3xl"></p>
             </div>
-            <a href="#portfolio" class="absolute bottom-10 z-20 animate-bounce text-slate-500 transition-transform duration-300 hover:scale-125 hover:text-terracotta-500" aria-label="Ir a portafolio">
+            <a href="#portfolio" class="absolute bottom-10 z-20 animate-bounce text-slate-500 transition-transform duration-300 hover:scale-125 hover:text-accent-start" aria-label="Ir a portafolio">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
             </a>
         </section>
@@ -555,7 +630,7 @@
                     <div class="lg:col-span-1 lg:sticky lg:top-28">
                         <div class="bg-white/50 p-6 rounded-lg border border-slate-200">
                             <h2 class="font-serif text-2xl font-bold text-slate-800 mb-4">Filosofía Artística</h2>
-                            <blockquote id="teaching-quote-philosophy" class="border-l-4 border-terracotta-500 pl-4 italic text-slate-700 text-lg my-6"></blockquote>
+                            <blockquote id="teaching-quote-philosophy" class="border-l-gradient pl-4 italic text-slate-700 text-lg my-6"></blockquote>
                             <p id="teaching-philosophy" class="text-slate-600 leading-relaxed"></p>
                         </div>
                     </div>
@@ -575,12 +650,12 @@
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-1 flex flex-col items-center gap-8 lg:sticky lg:top-28">
                         <div class="relative w-64 h-64 md:w-80 md:h-80">
-                            <div class="absolute -inset-2 bg-terracotta-500 rounded-lg transform rotate-[-3deg]"></div>
+                            <div class="absolute -inset-2 bg-gradient-accent rounded-lg transform rotate-[-3deg]"></div>
                             <img src="https://picsum.photos/seed/artist/200/200" id="artist-image" alt="" class="relative w-full h-full object-cover rounded-lg shadow-lg" />
                         </div>
                         <div class="w-full text-center">
-                            <button id="download-cv-btn" type="button" class="inline-flex items-center justify-center gap-2 border border-terracotta-500 text-terracotta-500 font-bold py-2 px-6 uppercase tracking-widest text-xs rounded-md transition-all duration-300 transform hover:bg-terracotta-500 hover:text-white hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
-                                <span id="cv-btn-content">
+                            <button id="download-cv-btn" type="button" class="btn-gradient-outline inline-flex items-center justify-center gap-2 font-bold py-2 px-6 uppercase tracking-widest text-xs rounded-md transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                                <span id="cv-btn-content" class="btn-text inline-flex items-center justify-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                                     Descargar CV (PDF)
                                 </span>
@@ -590,23 +665,23 @@
 
                     <div class="lg:col-span-2 space-y-10">
                         <div>
-                            <h2 class="font-serif text-2xl font-bold text-terracotta-500 mb-4 border-b-2 border-terracotta-500/20 pb-2">Perfil</h2>
+                            <h2 class="font-serif text-2xl font-bold text-gradient mb-4 border-b-gradient pb-2">Perfil</h2>
                             <p id="about-bio" class="text-slate-600 leading-relaxed"></p>
                         </div>
                         <div>
-                            <h2 class="font-serif text-2xl font-bold text-terracotta-500 mb-4 border-b-2 border-terracotta-500/20 pb-2">Formación Académica</h2>
+                            <h2 class="font-serif text-2xl font-bold text-gradient mb-4 border-b-gradient pb-2">Formación Académica</h2>
                             <ul id="education-list" class="space-y-4"></ul>
                         </div>
                         <div>
-                            <h2 class="font-serif text-2xl font-bold text-terracotta-500 mb-4 border-b-2 border-terracotta-500/20 pb-2">Experiencia Profesional (Arte)</h2>
+                            <h2 class="font-serif text-2xl font-bold text-gradient mb-4 border-b-gradient pb-2">Experiencia Profesional (Arte)</h2>
                             <ul id="experience-list" class="space-y-6 text-slate-600"></ul>
                         </div>
                         <div>
-                            <h2 class="font-serif text-2xl font-bold text-terracotta-500 mb-4 border-b-2 border-terracotta-500/20 pb-2">Distinciones y Exhibiciones</h2>
+                            <h2 class="font-serif text-2xl font-bold text-gradient mb-4 border-b-gradient pb-2">Distinciones y Exhibiciones</h2>
                             <ul id="exhibitions-list" class="list-disc list-inside space-y-2 text-slate-600"></ul>
                         </div>
                         <div>
-                            <h2 class="font-serif text-2xl font-bold text-terracotta-500 mb-4 border-b-2 border-terracotta-500/20 pb-2">Habilidades</h2>
+                            <h2 class="font-serif text-2xl font-bold text-gradient mb-4 border-b-gradient pb-2">Habilidades</h2>
                             <div id="skills-list" class="grid grid-cols-1 sm:grid-cols-2 gap-6"></div>
                         </div>
                     </div>
@@ -628,26 +703,26 @@
                         <div id="form-container">
                             <form id="contact-form" novalidate class="space-y-4">
                                 <div>
-                                    <label for="name" class="block text-sm font-semibold text-slate-700 mb-1">Nombre Completo <span class="text-terracotta-500">*</span></label>
-                                    <input id="name" name="name" type="text" required class="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-terracotta-500 focus:border-terracotta-500 sm:text-sm transition-colors" />
+                                    <label for="name" class="block text-sm font-semibold text-slate-700 mb-1">Nombre Completo <span class="text-accent-start">*</span></label>
+                                    <input id="name" name="name" type="text" required class="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-accent-start focus:border-accent-start sm:text-sm transition-colors" />
                                     <p id="name-error" class="mt-1 text-sm text-red-600" aria-live="polite"></p>
                                 </div>
                                 <div>
-                                    <label for="email" class="block text-sm font-semibold text-slate-700 mb-1">Correo Electrónico <span class="text-terracotta-500">*</span></label>
-                                    <input id="email" name="email" type="email" required class="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-terracotta-500 focus:border-terracotta-500 sm:text-sm transition-colors" />
+                                    <label for="email" class="block text-sm font-semibold text-slate-700 mb-1">Correo Electrónico <span class="text-accent-start">*</span></label>
+                                    <input id="email" name="email" type="email" required class="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-accent-start focus:border-accent-start sm:text-sm transition-colors" />
                                     <p id="email-error" class="mt-1 text-sm text-red-600" aria-live="polite"></p>
                                 </div>
                                 <div>
-                                    <label for="subject" class="block text-sm font-semibold text-slate-700 mb-1">Asunto <span class="text-terracotta-500">*</span></label>
-                                    <input id="subject" name="subject" type="text" required class="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-terracotta-500 focus:border-terracotta-500 sm:text-sm transition-colors" />
+                                    <label for="subject" class="block text-sm font-semibold text-slate-700 mb-1">Asunto <span class="text-accent-start">*</span></label>
+                                    <input id="subject" name="subject" type="text" required class="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-accent-start focus:border-accent-start sm:text-sm transition-colors" />
                                     <p id="subject-error" class="mt-1 text-sm text-red-600" aria-live="polite"></p>
                                 </div>
                                 <div>
-                                    <label for="message" class="block text-sm font-semibold text-slate-700 mb-1">Mensaje <span class="text-terracotta-500">*</span></label>
-                                    <textarea id="message" name="message" rows="4" required class="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-terracotta-500 focus:border-terracotta-500 sm:text-sm transition-colors"></textarea>
+                                    <label for="message" class="block text-sm font-semibold text-slate-700 mb-1">Mensaje <span class="text-accent-start">*</span></label>
+                                    <textarea id="message" name="message" rows="4" required class="block w-full px-3 py-2 bg-white border border-slate-300 rounded-md shadow-sm placeholder-slate-400 focus:outline-none focus:ring-accent-start focus:border-accent-start sm:text-sm transition-colors"></textarea>
                                     <p id="message-error" class="mt-1 text-sm text-red-600" aria-live="polite"></p>
                                 </div>
-                                <button type="submit" id="form-submit-btn" class="inline-flex items-center justify-center w-full bg-terracotta-500 text-white font-bold py-2 px-6 uppercase tracking-widest text-sm rounded-md transition-all duration-300 transform hover:bg-terracotta-600 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-terracotta-500">
+                                <button type="submit" id="form-submit-btn" class="inline-flex items-center justify-center w-full bg-gradient-accent text-white font-bold py-2 px-6 uppercase tracking-widest text-sm rounded-md transition-background duration-300 transform hover:bg-gradient-animate hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-start">
                                     Enviar Mensaje
                                 </button>
                             </form>
@@ -679,7 +754,7 @@
 
     <div id="modal" class="fixed inset-0 bg-black bg-opacity-70 z-60 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div id="modal-content" class="relative bg-white p-4 md:p-6 rounded-lg max-w-4xl max-h-[90vh] w-full animate-fade-in shadow-2xl">
-            <button id="modal-close-btn" class="absolute -top-4 -right-4 h-9 w-9 bg-slate-800 text-white rounded-full flex items-center justify-center text-2xl font-bold z-10 hover:bg-terracotta-500 transition-all duration-300 transform hover:scale-110 hover:rotate-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-white" aria-label="Cerrar">
+            <button id="modal-close-btn" class="absolute -top-4 -right-4 h-9 w-9 bg-slate-800 text-white rounded-full flex items-center justify-center text-2xl font-bold z-10 hover:bg-accent-start transition-all duration-300 transform hover:scale-110 hover:rotate-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-800 focus:ring-white" aria-label="Cerrar">
                 &times;
             </button>
             <div class="flex flex-col md:flex-row gap-6 max-h-[85vh]">
@@ -687,7 +762,7 @@
                     <!-- Modal image or video injected here -->
                 </div>
                 <div class="md:w-1/3 flex flex-col text-slate-800 overflow-y-auto">
-                    <h3 id="modal-title" class="text-2xl font-serif font-bold text-terracotta-500"></h3>
+                    <h3 id="modal-title" class="text-2xl font-serif font-bold text-gradient"></h3>
                     <p id="modal-year" class="text-slate-500 mt-2 font-mono text-sm"></p>
                     <div id="modal-details" class="mt-4 text-slate-600 space-y-2"></div>
                     <div class="border-t border-slate-200 my-4"></div>
@@ -822,7 +897,7 @@
             const margin = 15;
             const contentWidth = pageWidth - margin * 2;
             let y = margin;
-            const terracottaColor = '#D05A43';
+            const accentColor = '#833ab4';
 
             const checkPageBreak = (neededHeight) => {
                 if (y + neededHeight > pageHeight - margin) {
@@ -836,10 +911,10 @@
                 y += 10;
                 doc.setFont('helvetica', 'bold');
                 doc.setFontSize(14);
-                doc.setTextColor(terracottaColor);
+                doc.setTextColor(accentColor);
                 doc.text(title, margin, y);
                 y += 4;
-                doc.setDrawColor(terracottaColor);
+                doc.setDrawColor(accentColor);
                 doc.setLineWidth(0.5);
                 doc.line(margin, y, margin + 50, y);
                 y += 8;
@@ -993,7 +1068,7 @@
                        target="_blank"
                        rel="noopener noreferrer"
                        aria-label="${link.name}"
-                       class="text-slate-400 hover:text-terracotta-500 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+                       class="text-slate-400 hover:text-accent-start transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
                     >
                         ${link.icon}
                     </a>
@@ -1015,7 +1090,7 @@
                             </div>
                             <div class="p-5">
                                 <h3 class="font-serif text-xl font-bold text-slate-800 truncate">${item.title}</h3>
-                                <p class="text-terracotta-500 mt-1 font-mono text-sm">${item.year} / ${medium}</p>
+                                <p class="text-gradient mt-1 font-mono text-sm">${item.year} / ${medium}</p>
                                 <p class="mt-3 text-slate-600 leading-relaxed text-sm line-clamp-2">
                                     ${item.description}
                                 </p>
@@ -1029,7 +1104,7 @@
                 const list = document.getElementById('teaching-experience-list');
                 list.innerHTML = TEACHING_EXPERIENCES.map((exp, index) => `
                     <div class="bg-white p-6 rounded-lg shadow-md border border-slate-200/50" style="animation: fadeInUp 0.5s ease-out ${index * 0.15}s forwards; opacity: 0">
-                        <h3 class="text-xl font-serif font-bold text-terracotta-500">${exp.title}</h3>
+                        <h3 class="text-xl font-serif font-bold text-gradient">${exp.title}</h3>
                         <p class="text-md text-slate-600 mt-1">${exp.institution}</p>
                         <p class="text-sm text-slate-400 font-mono mt-1">${exp.period}</p>
                         <p class="text-slate-600 mt-4 leading-relaxed">${exp.description}</p>
@@ -1040,7 +1115,7 @@
             const renderAboutPage = () => {
                 document.getElementById('education-list').innerHTML = EDUCATION.map(edu => `
                     <li class="flex items-start gap-4">
-                        <div class="text-terracotta-500 mt-1 w-6 h-6 flex-shrink-0">${edu.icon}</div>
+                        <div class="text-accent-start mt-1 w-6 h-6 flex-shrink-0">${edu.icon}</div>
                         <div>
                             <p class="font-semibold text-slate-800">${edu.degree} ${edu.year ? `(${edu.year})` : ''}</p>
                             <p class="text-slate-500">${edu.institution}</p>
@@ -1060,7 +1135,7 @@
                 document.getElementById('skills-list').innerHTML = SKILLS.map(skill => `
                     <div>
                         <div class="flex items-center gap-3 mb-3">
-                            <div class="text-terracotta-500 w-6 h-6 flex-shrink-0">${skill.icon}</div>
+                            <div class="text-accent-start w-6 h-6 flex-shrink-0">${skill.icon}</div>
                             <h4 class="font-semibold text-slate-800 text-lg">${skill.category}</h4>
                         </div>
                         <ul class="list-disc list-inside space-y-1 text-slate-600 pl-9">
@@ -1076,14 +1151,14 @@
                 
                 contactList.innerHTML = `
                     <div class="flex items-start space-x-4">
-                        <div class="text-terracotta-500 mt-1 flex-shrink-0 w-6 h-6">${SKILLS[1].icon}</div>
+                        <div class="text-accent-start mt-1 flex-shrink-0 w-6 h-6">${SKILLS[1].icon}</div>
                         <div>
                             <h3 class="text-lg font-serif font-semibold text-slate-800">Email</h3>
-                            <a href="mailto:${CONTACT_EMAIL}" class="hover:text-terracotta-500 transition-colors hover:underline">${CONTACT_EMAIL}</a>
+                            <a href="mailto:${CONTACT_EMAIL}" class="hover:text-accent-start transition-colors hover:underline">${CONTACT_EMAIL}</a>
                         </div>
                     </div>
                     <div class="flex items-start space-x-4">
-                         <div class="text-terracotta-500 mt-1 flex-shrink-0 w-6 h-6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.98z"></path></svg></div>
+                         <div class="text-accent-start mt-1 flex-shrink-0 w-6 h-6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.98z"></path></svg></div>
                         <div>
                             <h3 class="text-lg font-serif font-semibold text-slate-800">Teléfono</h3>
                             <p>${CONTACT_PHONE}</p>
@@ -1091,7 +1166,7 @@
                     </div>
                 `;
                 socialContainer.innerHTML = SOCIAL_LINKS.map(link => `
-                     <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-terracotta-500 transition-all duration-300 transform hover:scale-110" aria-label="${link.name}">
+                     <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-accent-start transition-all duration-300 transform hover:scale-110" aria-label="${link.name}">
                         ${link.icon}
                     </a>
                 `).join('');
@@ -1181,9 +1256,14 @@
 
                     if (scrollPosition >= sectionTop && scrollPosition <= sectionTop + sectionHeight) {
                         const currentId = current.getAttribute('id');
-                        navLinks.forEach(link => {
-                            link.classList.toggle('text-terracotta-500', link.getAttribute('data-section') === currentId);
-                            link.classList.toggle('text-slate-900', link.getAttribute('data-section') !== currentId);
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                           if (link.getAttribute('data-section') === currentId) {
+                               link.classList.add('text-gradient');
+                               link.classList.remove('text-slate-900');
+                           } else {
+                               link.classList.remove('text-gradient');
+                               link.classList.add('text-slate-900');
+                           }
                         });
                     }
                 });
@@ -1197,11 +1277,11 @@
             const switchPortfolioView = (view) => {
                 currentPortfolioView = view;
                 if (view === 'plastic') {
-                    plasticTabBtn.setAttribute('class', 'px-6 py-2 text-sm font-semibold rounded-md transition-all duration-300 uppercase tracking-widest bg-terracotta-500 text-white shadow-sm');
+                    plasticTabBtn.setAttribute('class', 'px-6 py-2 text-sm font-semibold rounded-md transition-all duration-300 uppercase tracking-widest bg-gradient-accent hover:bg-gradient-animate text-white shadow-sm');
                     audiovisualTabBtn.setAttribute('class', 'px-6 py-2 text-sm font-semibold rounded-md transition-all duration-300 uppercase tracking-widest bg-transparent text-slate-500 hover:bg-slate-200 hover:text-slate-900');
                     renderPortfolioItems(PLASTIC_ARTWORKS, 'plastic');
                 } else {
-                    audiovisualTabBtn.setAttribute('class', 'px-6 py-2 text-sm font-semibold rounded-md transition-all duration-300 uppercase tracking-widest bg-terracotta-500 text-white shadow-sm');
+                    audiovisualTabBtn.setAttribute('class', 'px-6 py-2 text-sm font-semibold rounded-md transition-all duration-300 uppercase tracking-widest bg-gradient-accent hover:bg-gradient-animate text-white shadow-sm');
                     plasticTabBtn.setAttribute('class', 'px-6 py-2 text-sm font-semibold rounded-md transition-all duration-300 uppercase tracking-widest bg-transparent text-slate-500 hover:bg-slate-200 hover:text-slate-900');
                     renderPortfolioItems(AUDIOVISUAL_WORKS, 'audiovisual');
                 }
@@ -1240,6 +1320,12 @@
             const closeModal = () => {
                 modal.classList.add('hidden');
                 document.body.style.overflow = '';
+                 // Stop video when closing modal
+                const iframe = modal.querySelector('iframe');
+                if (iframe) {
+                    const src = iframe.src;
+                    iframe.src = src; // This reloads the iframe, stopping the video
+                }
             };
 
             document.getElementById('portfolio-grid').addEventListener('click', (e) => {

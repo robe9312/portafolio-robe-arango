@@ -148,6 +148,7 @@
         z-index: 1;
         background: radial-gradient(circle at center, transparent 10%, var(--color-slate-50) 40%);
         pointer-events: none;
+        transition: background-color 0.5s ease-in-out;
       }
 
       /* UTILITIES */
@@ -409,6 +410,35 @@
       @media (min-width: 640px) {
         .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .sm\:text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+      }
+
+      /* View Transitions API for Theme Toggle */
+      @keyframes reveal-in {
+        from { clip-path: circle(0% at var(--x) var(--y)); }
+        to { clip-path: circle(150% at var(--x) var(--y)); }
+      }
+
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation: none;
+        mix-blend-mode: normal;
+      }
+
+      ::view-transition-old(root) {
+        z-index: 1;
+      }
+      ::view-transition-new(root) {
+        z-index: 9999;
+      }
+      html.dark::view-transition-old(root) {
+        z-index: 9999;
+      }
+      html.dark::view-transition-new(root) {
+        z-index: 1;
+      }
+
+      html::view-transition-new(root) {
+        animation: reveal-in 0.5s ease-in-out;
       }
     </style>
 <script>
@@ -1083,11 +1113,25 @@
                 }
             };
 
-            themeToggleBtn.addEventListener('click', () => {
+            const handleThemeToggleClick = (event) => {
                 const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-                localStorage.setItem('theme', newTheme);
-                applyTheme(newTheme);
-            });
+
+                if (!document.startViewTransition) {
+                    localStorage.setItem('theme', newTheme);
+                    applyTheme(newTheme);
+                    return;
+                }
+
+                const x = event.clientX;
+                const y = event.clientY;
+                document.documentElement.style.setProperty('--x', x + 'px');
+                document.documentElement.style.setProperty('--y', y + 'px');
+
+                document.startViewTransition(() => {
+                    localStorage.setItem('theme', newTheme);
+                    applyTheme(newTheme);
+                });
+            };
 
             // --- HEADER LOGIC ---
             const handleScroll = () => {
@@ -1333,7 +1377,8 @@
                 mobileNavContainer.insertAdjacentHTML('beforeend', '<div class="pt-4"></div>');
                 mobileNavContainer.lastChild.appendChild(mobileThemeToggle);
 
-                mobileThemeToggle.addEventListener('click', themeToggleBtn.click);
+                themeToggleBtn.addEventListener('click', handleThemeToggleClick);
+                mobileThemeToggle.addEventListener('click', handleThemeToggleClick);
 
                 document.querySelectorAll('#mobile-nav a').forEach(link => link.addEventListener('click', handleNavClick));
                 document.querySelectorAll('#desktop-nav a').forEach(link => link.addEventListener('click', handleNavClick));

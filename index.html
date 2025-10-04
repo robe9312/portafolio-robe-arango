@@ -674,12 +674,20 @@
                             <ul id="education-list" class="space-y-4"></ul>
                         </div>
                         <div>
+                            <h2 class="font-serif text-2xl font-bold text-gradient mb-4 border-b-gradient pb-2">Cursos de Postgrado</h2>
+                            <ul id="postgraduate-list" class="space-y-4"></ul>
+                        </div>
+                        <div>
                             <h2 class="font-serif text-2xl font-bold text-gradient mb-4 border-b-gradient pb-2">Experiencia Profesional (Arte)</h2>
                             <ul id="experience-list" class="space-y-6 text-slate-600"></ul>
                         </div>
                         <div>
-                            <h2 class="font-serif text-2xl font-bold text-gradient mb-4 border-b-gradient pb-2">Distinciones y Exhibiciones</h2>
+                            <h2 class="font-serif text-2xl font-bold text-gradient mb-4 border-b-gradient pb-2">Participación en Eventos y Exhibiciones</h2>
                             <ul id="exhibitions-list" class="list-disc list-inside space-y-2 text-slate-600"></ul>
+                        </div>
+                         <div>
+                            <h2 class="font-serif text-2xl font-bold text-gradient mb-4 border-b-gradient pb-2">Publicaciones</h2>
+                            <ul id="publications-list" class="list-disc list-inside space-y-2 text-slate-600"></ul>
                         </div>
                         <div>
                             <h2 class="font-serif text-2xl font-bold text-gradient mb-4 border-b-gradient pb-2">Habilidades</h2>
@@ -776,7 +784,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         // --- START OF constants.js ---
-        const ARTIST_NAME = "Robe Arango";
+        const ARTIST_NAME = "Roberto Arango";
         const ARTIST_TITLE = "Artista Visual, Editor, Creador Audiovisual y Docente / Visual Artist, Editor, Audiovisual Creator and Educator";
         const CONTACT_EMAIL = "arangorobe380@gmail.com";
         const CONTACT_PHONE = "+240 222 183 952";
@@ -814,75 +822,119 @@
           { id: 4, title: "Pulso", year: 2021, duration: "2:50", description: "Un estudio rítmico del movimiento humano en el entorno urbano.", embedUrl: "https://www.youtube.com/embed/9bZkp7q19f0" },
         ];
         const TEACHING_EXPERIENCES = [
-          {
-            title: "Docente de Artes Plásticas",
-            institution: "Ministerio de Educación – Guinea Ecuatorial",
-            period: "2020 – Presente",
-            description: "Diseño e implementación de programas de artes visuales para secundaria. Desarrollo de proyectos pedagógicos interdisciplinarios, integrando historia del arte, técnicas mixtas y creatividad aplicada. Coordinación de actividades culturales y exposiciones escolares."
-          },
-          {
-            title: "Docente de Artes Visuales",
-            institution: "Cuba",
-            period: "2014 – 2020",
-            description: "Enseñanza en primaria, preuniversitario y educación especial, adaptando metodologías a distintos niveles de desarrollo artístico. Organización de talleres de dibujo, pintura y creación audiovisual."
-          }
+            {
+                title: "Profesor de Artes Visuales",
+                institution: "Instituto Nacional de Enseñanza Secundaria “Añisok”, Guinea Ecuatorial",
+                period: "2024 – Presente",
+                description: "Impartición de clases de artes visuales, historia del arte y dibujo. Preparación metodológica y asesoramiento de círculos de interés en artes plásticas para estudiantes de secundaria."
+            },
+            {
+                title: "Instructor de Artes Plásticas",
+                institution: "Escuela Primaria de Enseñanza Especial “Chiqui Gómez Lubián”, Cuba",
+                period: "2022 – 2024",
+                description: "Trabajo pedagógico adaptado a alumnos con necesidades educativas especiales. Desarrollo de talleres de creación y apreciación para fomentar la expresión y la inclusión a través del arte."
+            },
+            {
+                title: "Instructor de Artes Plásticas",
+                institution: "Instituto Preuniversitario “Osvaldo Herrera González”, Cuba",
+                period: "2020 – 2021",
+                description: "Formación artística para estudiantes preuniversitarios, enfocada en el desarrollo de habilidades técnicas y conceptuales en dibujo, pintura y apreciación de las artes visuales."
+            },
+            {
+                title: "Instructor de Artes Plásticas",
+                institution: "Escuela Primaria “28 de Enero”, Cuba",
+                period: "2014 – 2016",
+                description: "Iniciación al arte para niños de primaria. Impartición de talleres de creación plástica y apreciación artística para despertar la creatividad y la sensibilidad en las primeras etapas educativas."
+            }
         ];
         const ABOUT_TEXT = {
           bio: `Soy un artista multidisciplinario y docente con 11 años de experiencia, dedicado a la enseñanza y la creación de obras visuales y audiovisuales. Desde temprana edad, mi vida se ha entrelazado con el arte, explorando la pintura, el videoarte y la producción audiovisual profesional. Graduado en Cuba como Instructor de Arte y editor de televisión, he desarrollado una carrera que combina pedagogía, creatividad y práctica profesional en todos los niveles educativos: primaria, preuniversitario, enseñanza especial y secundaria. Mi visión artística se fundamenta en la integración de técnicas tradicionales y contemporáneas, buscando siempre conectar con la sensibilidad y el pensamiento crítico del espectador y del estudiante.`
         };
         const EDUCATION = [
             {
-                degree: "Instructor de Arte",
+                degree: "Licenciado en Educación. Instructor de Arte",
                 institution: "Cuba",
-                year: "",
+                year: "2014 - 2018",
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>`,
             },
             {
-                degree: "Editor de Televisión",
+                degree: "Bachiller en Humanidades e Instructor de Arte en Artes Plásticas",
                 institution: "Cuba",
-                year: "",
-                icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18" /><line x1="7" y1="2" x2="7" y2="22" /><line x1="17" y1="2" x2="17" y2="22" /><line x1="2" y1="12" x2="22" y2="12" /><line x1="2" y1="7" x2="7" y2="7" /><line x1="2" y1="17" x2="7" y2="17" /><line x1="17" y1="17" x2="22" y2="17" /><line x1="17" y1="7" x2="22" y2="7" /></svg>`,
+                year: "2009 - 2013",
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a2 2 0 0 0 2-2V7l4-4L14 1l-4 4-4-4-4 4 4 4v13a2 2 0 0 0 2 2z" /><path d="M2 15h20" /></svg>`,
             },
+        ];
+        const POSTGRADUATE_COURSES = [
+            {
+                title: "Edición de Televisión",
+                institution: "Centro de Estudios de Radio y Televisión (CERT), La Habana, Cuba",
+                year: "2023"
+            },
+            {
+                title: "Curaduría, Montaje, Conservación y Restauración",
+                institution: "Centro Provincial de Superación para la Cultura 'Ángel Román González Borrell', Villa Clara, Cuba",
+                year: "2015"
+            },
+            {
+                title: "Apreciación de las Artes Plásticas",
+                institution: "Centro Provincial de Superación para la Cultura 'Ángel Román González Borrell', Villa Clara, Cuba",
+                year: "2015"
+            }
         ];
         const PROFESSIONAL_EXPERIENCE = [
             {
                 title: "Artista Visual y Realizador Audiovisual",
                 period: "2013 – Presente",
-                description: "Producción de videoclips, documentales, piezas de videoarte y proyectos experimentales. Edición profesional de contenidos audiovisuales, incluyendo colaboraciones con el ICRT (Cuba). Exposiciones individuales y colectivas de pintura, con obras en colecciones privadas. Miembro activo de la Asociación Hermanos Saíz (AHS) en el área audiovisual."
+                description: "Producción de videoclips, documentales, piezas de videoarte y proyectos experimentales. Edición profesional de contenidos audiovisuales. Exposiciones individuales y colectivas. Miembro activo de la Asociación Hermanos Saíz (AHS) en el área audiovisual."
+            },
+            {
+                title: "Comunicador de la Brigada José Martí Villa Clara",
+                period: "2021 – 2022",
+                description: "Gestión de la comunicación institucional para la Brigada de Instructores de Arte en la provincia de Villa Clara, Cuba."
             },
             {
                 title: "Miembro del Conjunto Artístico Integral de Montañas",
                 period: "2013 – 2014",
-                description: "Participación en proyectos culturales y escénicos interdisciplinarios. Creación de piezas audiovisuales y performances comunitarias."
+                description: "Participación en proyectos culturales y escénicos interdisciplinarios, incluyendo la creación de piezas audiovisuales y performances comunitarias."
             }
-        ]
-        const EXHIBITIONS_LIST = [
-            "Participación en el Evento Internacional de Pedagogía 2025.",
-            "Publicación en evento científico internacional (2025).",
-            "Exposiciones individuales y colectivas de pintura en Cuba y proyectos en Guinea Ecuatorial.",
-            "Producciones audiovisuales exhibidas en festivales y eventos culturales.",
-            "Obras integradas en colecciones privadas.",
+        ];
+        const PUBLICATIONS = [
+            { title: "Pedagogia 2025" },
+            { title: "Seminario Metodologico Integrador" }
+        ];
+        const EVENTS_AND_EXHIBITIONS = [
+            "Evento Cientifico Metodologico (Añisok, Wele-Nzas, Guinea Ecuatorial)",
+            "Pedagogia 2025 (Internacional)",
+            "Festival Municipal de la Enseñanza Especial (Santa Clara, Villa Clara, 2022)",
+            "Consejo Municipal de la Brigada Jose Marti de instructores de Arte (Santa Clara, Villa Clara, 2022)",
+            "Segundo Salón Provincial de Grabado (Escuela Pedagógica 'Manuel Ascunce Domenech', Santa Clara, 2018)",
+            "Evento Provincial Construyendo Esperanza (Santa Clara, Villa Clara, 2016)",
+            "Encuentro Nacional de Conjuntos Artísticos (Artemisa, Cuba, 2014)",
+            "Salón Provincial de Arte Erótico (Santa Clara, Villa Clara, 2013)",
+            "Festival Provincial de artistas aficionados (Santa Clara, Villa Clara, 2012)",
+            "Primer Salón Provincial De Escultura de pequeño formato (Santa Clara, Villa Clara, 2012)",
+            "Evento Provincial Construyendo Esperanza (Santa Clara, Villa Clara, 2012)"
         ];
         const SKILLS = [
             {
                 category: "Artes Plásticas",
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a2 2 0 0 0 2-2V7l4-4L14 1l-4 4-4-4-4 4 4 4v13a2 2 0 0 0 2 2z" /><path d="M2 15h20" /></svg>`,
-                items: ["Pintura, dibujo y creación de exposiciones"],
+                items: ["Pintura y Dibujo", "Curaduría y Montaje", "Conservación y Restauración"],
             },
             {
                 category: "Realización Audiovisual",
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z" /><rect x="2" y="6" width="14" height="12" rx="2" ry="2" /></svg>`,
-                items: ["Producción y edición audiovisual"],
+                items: ["Producción y Edición Audiovisual", "Fotografía", "Realización de Talleres"],
             },
             {
                 category: "Docencia",
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" /></svg>`,
-                items: ["Docencia artística y diseño de programas educativos"],
+                items: ["Historia del Arte y Apreciación", "Asesoramiento de Círculos de Interés", "Metodología de la enseñanza artística"],
             },
             {
                 category: "Competencias",
                 icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></svg>`,
-                items: ["Desarrollo de proyectos culturales y artísticos interdisciplinarios", "Innovación en técnicas visuales y audiovisuales"],
+                items: ["Comunicación Institucional", "Desarrollo de proyectos culturales", "Innovación en técnicas visuales"],
             },
         ];
         const TEACHING_QUOTE = "El arte no se enseña, se contagia / Art is not taught, it is shared.";
@@ -917,7 +969,7 @@
                 y += 4;
                 doc.setDrawColor(accentColor);
                 doc.setLineWidth(0.5);
-                doc.line(margin, y, margin + 50, y);
+                doc.line(margin, y, margin + 60, y);
                 y += 8;
                 doc.setTextColor(0, 0, 0);
             };
@@ -959,11 +1011,25 @@
             EDUCATION.forEach(edu => {
                 checkPageBreak(10);
                 doc.setFont('helvetica', 'bold');
-                doc.text(`• ${edu.degree}`, margin, y);
+                doc.text(`• ${edu.degree} (${edu.year})`, margin, y);
                 y += 5;
                 doc.setFont('helvetica', 'normal');
                 doc.text(edu.institution, margin + 5, y);
                 y += 7;
+            });
+
+            // === CURSOS DE POSTGRADO ===
+            addSectionTitle('Cursos de Postgrado');
+            doc.setFontSize(10);
+            POSTGRADUATE_COURSES.forEach(course => {
+                checkPageBreak(15);
+                doc.setFont('helvetica', 'bold');
+                doc.text(`• ${course.title} (${course.year})`, margin, y);
+                y += 5;
+                doc.setFont('helvetica', 'normal');
+                const lines = doc.splitTextToSize(course.institution, contentWidth - 5);
+                doc.text(lines, margin + 5, y);
+                y += lines.length * 5 + 2;
             });
 
             // === EXPERIENCIA PROFESIONAL (ARTE) ===
@@ -1004,31 +1070,41 @@
             addSectionTitle('Habilidades');
             doc.setFontSize(10);
             SKILLS.forEach(skill => {
-                checkPageBreak(15);
+                checkPageBreak(15 + skill.items.length * 5);
                 doc.setFont('helvetica', 'bold');
                 doc.text(skill.category, margin, y);
                 y += 5;
                 doc.setFont('helvetica', 'normal');
                 skill.items.forEach(item => {
-                    const lines = doc.splitTextToSize(`• ${item}`, contentWidth - 5);
-                    doc.text(lines, margin + 5, y);
-                    y += lines.length * 5;
+                    doc.text(`• ${item}`, margin + 5, y);
+                    y += 5;
                 });
                 y += 3;
             });
             
-            // === DISTINCIONES Y EXHIBICIONES ===
-            addSectionTitle('Distinciones y Exhibiciones');
+            // === PARTICIPACIÓN EN EVENTOS Y EXHIBICIONES ===
+            addSectionTitle('Participación en Eventos y Exhibiciones');
             doc.setFontSize(10);
             doc.setFont('helvetica', 'normal');
-            EXHIBITIONS_LIST.forEach(item => {
+            EVENTS_AND_EXHIBITIONS.forEach(item => {
                 checkPageBreak(10);
                 const lines = doc.splitTextToSize(`• ${item}`, contentWidth - 5);
                 doc.text(lines, margin + 5, y);
                 y += lines.length * 5;
             });
 
-            doc.save('Robe_Arango_CV.pdf');
+             // === PUBLICACIONES ===
+            addSectionTitle('Publicaciones');
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            PUBLICATIONS.forEach(item => {
+                checkPageBreak(10);
+                const lines = doc.splitTextToSize(`• ${item.title}`, contentWidth - 5);
+                doc.text(lines, margin + 5, y);
+                y += lines.length * 5;
+            });
+
+            doc.save(`${ARTIST_NAME.replace(' ', '_')}_CV.pdf`);
         };
 
         // --- START OF index.js ---
@@ -1118,8 +1194,20 @@
                     <li class="flex items-start gap-4">
                         <div class="text-accent-start mt-1 w-6 h-6 flex-shrink-0">${edu.icon}</div>
                         <div>
-                            <p class="font-semibold text-slate-800">${edu.degree} ${edu.year ? `(${edu.year})` : ''}</p>
+                            <p class="font-semibold text-slate-800">${edu.degree} (${edu.year})</p>
                             <p class="text-slate-500">${edu.institution}</p>
+                        </div>
+                    </li>
+                `).join('');
+
+                document.getElementById('postgraduate-list').innerHTML = POSTGRADUATE_COURSES.map(course => `
+                    <li class="flex items-start gap-4">
+                        <div class="text-accent-start mt-1 w-6 h-6 flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-slate-800">${course.title} (${course.year})</p>
+                            <p class="text-slate-500">${course.institution}</p>
                         </div>
                     </li>
                 `).join('');
@@ -1131,7 +1219,9 @@
                     </li>
                 `).join('');
 
-                document.getElementById('exhibitions-list').innerHTML = EXHIBITIONS_LIST.map(item => `<li>${item}</li>`).join('');
+                document.getElementById('exhibitions-list').innerHTML = EVENTS_AND_EXHIBITIONS.map(item => `<li>${item}</li>`).join('');
+                
+                document.getElementById('publications-list').innerHTML = PUBLICATIONS.map(item => `<li>${item.title}</li>`).join('');
 
                 document.getElementById('skills-list').innerHTML = SKILLS.map(skill => `
                     <div>
@@ -1153,7 +1243,7 @@
                 
                 contactList.innerHTML = `
                     <div class="flex items-start space-x-4">
-                        <div class="text-accent-start mt-1 flex-shrink-0 w-6 h-6">${SKILLS[1].icon}</div>
+                        <div class="text-accent-start mt-1 flex-shrink-0 w-6 h-6"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
                         <div>
                             <h3 class="text-lg font-serif font-semibold text-slate-800">Email</h3>
                             <a href="mailto:${CONTACT_EMAIL}" class="hover:text-accent-start transition-colors hover:underline">${CONTACT_EMAIL}</a>

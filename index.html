@@ -176,6 +176,7 @@
       .-top-4 { top: -1rem; }
       .-right-4 { right: -1rem; }
       .bottom-10 { bottom: 2.5rem; }
+      .z-0 { z-index: 0; }
       .z-10 { z-index: 10; }
       .z-20 { z-index: 20; }
       .z-50 { z-index: 50; }
@@ -523,6 +524,18 @@
       html:not(.dark)::view-transition-old(root) {
         animation: reveal-out 0.5s ease-in-out;
       }
+
+      /* 3D Canvas Container */
+      #canvas-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5; /* Between background/vignette (z1) and content (z10) */
+        pointer-events: none;
+        overflow: hidden;
+      }
     </style>
 <script>
   // Prevents FOIT (Flash of Incorrect Theme)
@@ -602,6 +615,7 @@
 
     <main>
         <section id="inicio" class="relative h-screen min-h-[700px] flex items-center justify-center text-center bg-home-gradient overflow-hidden">
+            <div id="canvas-container"></div>
             <div class="relative z-10 p-6 flex flex-col items-center justify-center w-full max-w-4xl space-y-6">
                 <h1 id="artist-name-hero" class="font-serif text-6xl md:text-8xl lg:text-9xl font-bold text-slate-900 tracking-tight leading-none"></h1>
                 <p id="artist-title-hero" class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto"></p>
@@ -820,6 +834,111 @@
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+
+        // 3D Scene Configuration
+        const container = document.getElementById('canvas-container');
+        if (container) {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Optimize for high DPI
+            container.appendChild(renderer.domElement);
+
+            // Lighting (less critical for BasicMaterial but good to have if we switch)
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambientLight);
+            
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+
+            // Objects
+            const shapes = [];
+            const palette = [0x833ab4, 0xfd1d1d, 0xfcb045]; // Brand colors
+            
+            const createFloatingShape = (color) => {
+                const geometryTypes = [
+                    new THREE.IcosahedronGeometry(Math.random() * 0.5 + 0.3, 0),
+                    new THREE.OctahedronGeometry(Math.random() * 0.5 + 0.3),
+                    new THREE.TetrahedronGeometry(Math.random() * 0.5 + 0.3)
+                ];
+                
+                const geometry = geometryTypes[Math.floor(Math.random() * geometryTypes.length)];
+                
+                // Wireframe only
+                const material = new THREE.MeshBasicMaterial({
+                    color: color,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.4
+                });
+
+                const mesh = new THREE.Mesh(geometry, material);
+                
+                // Random positioning localized to the view
+                // X: spread across the width
+                mesh.position.x = (Math.random() - 0.5) * 20;
+                // Y: spread across the height of the hero section view
+                mesh.position.y = (Math.random() - 0.5) * 12;
+                // Z: Depth
+                mesh.position.z = (Math.random() - 0.5) * 5;
+                
+                // Store initial position for animation
+                mesh.userData = {
+                    speedRot: {
+                        x: (Math.random() - 0.5) * 0.02,
+                        y: (Math.random() - 0.5) * 0.02
+                    },
+                    floatSpeed: Math.random() * 0.002 + 0.001,
+                    floatOffset: Math.random() * Math.PI * 2,
+                    initialY: mesh.position.y
+                };
+
+                scene.add(mesh);
+                shapes.push(mesh);
+            };
+
+            // Generate 40 shapes
+            for (let i = 0; i < 40; i++) {
+                const color = palette[Math.floor(Math.random() * palette.length)];
+                createFloatingShape(color);
+            }
+
+            camera.position.z = 5;
+
+            // Animation Loop
+            let time = 0;
+            const animate = () => {
+                requestAnimationFrame(animate);
+                time += 0.01;
+
+                shapes.forEach(mesh => {
+                    // Rotation
+                    mesh.rotation.x += mesh.userData.speedRot.x;
+                    mesh.rotation.y += mesh.userData.speedRot.y;
+                    
+                    // Floating motion
+                    mesh.position.y = mesh.userData.initialY + Math.sin(time * mesh.userData.floatSpeed + mesh.userData.floatOffset) * 0.5;
+                });
+
+                // No Parallax needed here as container is absolute in the section
+                renderer.render(scene, camera);
+            };
+
+            animate();
+
+            // Resize Handler
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+    </script>
     <script>
         // --- START OF constants.js ---
         const ARTIST_NAME = "Roberto Arango";
